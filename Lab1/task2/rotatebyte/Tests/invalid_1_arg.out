@@ -1,0 +1,2 @@
+Check argument 1.
+Usage: rotatebyte.exe <byte 0..255> <number of bits 1..7> <L / R>
