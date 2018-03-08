@@ -1,0 +1,4 @@
+Failed to open Tests\not-exist.in
+Check argument 2
+Usage for encryption: crypt.exe crypt <input file> <output file> <key 0..255>
+Usage for decryption: crypt.exe decrypt <input file> <output file> <key 0..255>
