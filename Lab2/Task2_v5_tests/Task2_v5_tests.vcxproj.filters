@@ -21,7 +21,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Task1_v6\multivector.h">
+    <ClInclude Include="..\Task2_v5\htmldecode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -29,13 +29,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="miltivector-test.cpp">
+    <ClCompile Include="htmldecode-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Task1_v6\miltivector.cpp">
+    <ClCompile Include="..\Task2_v5\htmldecode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,4 +8,3 @@ void PrintArrayToCout(DoubleArray const& numbers);
 DoubleArray GetArrayFromCin();
 
 void MultToMaxAndDivideToMin(DoubleArray& numbers);
-

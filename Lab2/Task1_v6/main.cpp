@@ -4,6 +4,7 @@
 //и разделить на минимальный элемент исходного массива
 
 #include "stdafx.h"
+#include "multivector.h"
 
 int main()
 {
