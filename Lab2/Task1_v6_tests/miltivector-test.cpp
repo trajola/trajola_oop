@@ -27,6 +27,19 @@ TEST_CASE("vector_1_number")
 	CHECK(VectorsAreEqual(numbersCheck, { -5 }));
 }
 
+TEST_CASE("not_divide_to_0_vector")
+{
+	DoubleArray numbersCheck = { 1, 0, 4.5 };
+	MultToMaxAndDivideToMin(numbersCheck);
+	CHECK(VectorsAreEqual(numbersCheck, { 4.5, 0, 20.25 }));
+}
+TEST_CASE("not_divide_to_0_only0")
+{
+	DoubleArray numbersCheck = { 0 };
+	MultToMaxAndDivideToMin(numbersCheck);
+	CHECK(VectorsAreEqual(numbersCheck, { 0 }));
+}
+
 TEST_CASE("empty_vector_transform_to_empty_vector")
 {
 	DoubleArray emptyVector;
