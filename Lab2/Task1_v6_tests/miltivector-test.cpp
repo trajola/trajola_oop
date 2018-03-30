@@ -33,7 +33,7 @@ TEST_CASE("not_divide_to_0_vector")
 	MultToMaxAndDivideToMin(numbersCheck);
 	CHECK(VectorsAreEqual(numbersCheck, { 4.5, 0, 20.25 }));
 }
-TEST_CASE("not_divide_to_0_only0")
+TEST_CASE("not_divide_to_0_only")
 {
 	DoubleArray numbersCheck = { 0 };
 	MultToMaxAndDivideToMin(numbersCheck);

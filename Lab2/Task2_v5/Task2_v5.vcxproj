@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GetlineIterator.h" />
     <ClInclude Include="htmldecode.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
