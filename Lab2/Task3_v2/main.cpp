@@ -5,13 +5,21 @@
 #include "translate.h"
 
 #include <iostream>
-#include <ostream>
+#include <string>
 
 int main(int argc, char* argv[])
 {
 	Dictionary dict;
-	if (argc == 1)
-	{		
+	State currentState;
+	currentState.dictChanged = true;
+	currentState.toDo = Action::WAIT_WORD;
+	
+	while (currentState.toDo != Action::STOP_AND_EXIT)
+	{
+		std::cout << ">";
+		std::string str;
+		std::getline(std::cin, str);
+
 	}
 	
 	return 0;
