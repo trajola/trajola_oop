@@ -7,20 +7,52 @@
 #include <iostream>
 #include <string>
 
+enum StateType
+{
+	EXIT,
+	TRANSLATE,
+	ADD_WORD_TO_DICTIONARY,
+	SAVE_DICTIONARY	
+};
+
+
+
+void HandleAction(StateType& state, std::string const& inStr, Dictionary& dict)
+{
+	if (state == TRANSLATE)
+	{
+		if (inStr == "...")
+		{
+			state = EXIT;
+			return;
+		}
+		std::string translation;
+		if (Translate(inStr, translation, dict))
+			std::cout << translation << "\n";
+		else
+		{
+			//state = ADD_WORD_TO_DICTIONARY;
+			std::cout << "don't know" << "\n";
+		}
+	}
+
+	return;
+}
+
+
+
 int main(int argc, char* argv[])
 {
 	Dictionary dict;
-	State currentState;
-	currentState.dictChanged = true;
-	currentState.toDo = Action::WAIT_WORD;
-	
-	while (currentState.toDo != Action::STOP_AND_EXIT)
+	ReadDictionaryFromFile(dict, argv[1]);
+	bool dictChanged = true;
+	StateType state = TRANSLATE;
+	while (state != EXIT)
 	{
 		std::cout << ">";
-		std::string str;
-		std::getline(std::cin, str);
-
+		std::string inStr;
+		std::getline(std::cin, inStr);
+		HandleAction(state, inStr, dict);
 	}
-	
 	return 0;
 }
