@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1000" height="1000" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<title>Picture for Lab4</title>
+<line x1="50" y1="90" x2="50" y2="190" stroke="#000000" stroke-width="1" />
+<circle cx="50" cy="50" r="40" fill="#FF0000" />
+<circle cx="50" cy="50" r="40" fill="none" stroke="#000000" stroke-width="1" />
+<polygon points="150,10 120,100 180,100 " fill="#BBBB00" stroke="#000000" stroke-width="1" />
+<polygon points="120,100 120,200 180,200 180,100 " fill="#9F9F00" stroke="#000000" stroke-width="1" />
+</svg>

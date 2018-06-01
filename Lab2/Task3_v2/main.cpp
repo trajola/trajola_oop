@@ -51,7 +51,8 @@ int main(int argc, char* argv[])
 	{
 		std::cout << ">";
 		std::string inStr;
-		std::getline(std::cin, inStr);
+		if (!std::getline(std::cin, inStr))
+			inStr = "...";
 		HandleAction(state, inStr, dict);
 	}
 	return 0;
