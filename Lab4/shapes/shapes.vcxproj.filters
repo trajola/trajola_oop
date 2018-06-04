@@ -24,19 +24,7 @@
     <ClInclude Include="point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="linesegment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="solidshape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="canvasdrawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="canvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="canvas-svg.h">
@@ -54,15 +42,30 @@
     <ClInclude Include="rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ishape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="icanvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="icanvasdrawable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isolidshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solidshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="linesegment.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

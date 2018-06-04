@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include <iomanip>
 #include "canvas-svg.h"
 
 CCanvas::CCanvas(std::string const & outStreamName)
@@ -52,13 +53,22 @@ void CCanvas::DrawCircle(CPoint const & center, double radius, std::string const
 	m_outFile << " stroke=\"" << lineColor << "\" stroke-width=\"1\" />\n";
 }
 
-void CCanvas::FillPolygon(std::vector<CPoint> const & points, std::string const & lineColor, std::string const & fillColor)
+void CCanvas::FillPolygon(std::vector<CPoint> const & points, std::string const & fillColor)
 {
 	m_outFile << std::fixed << std::setprecision(0);
 	m_outFile << "<polygon points=\"";
 	for (auto point : points)
 		m_outFile << point.x << "," << point.y << " ";
 	m_outFile << "\"";
-	m_outFile << " fill=\"" << fillColor << "\"";
-	m_outFile << " stroke=\"" << lineColor << "\" stroke-width=\"1\" />\n";
+	m_outFile << " fill=\"" << fillColor << "\" />\n";
+}
+
+void CCanvas::DrawPolygon(std::vector<CPoint> const & points, std::string const & lineColor)
+{
+	m_outFile << std::fixed << std::setprecision(0);
+	m_outFile << "<polygon points=\"";
+	for (auto point : points)
+		m_outFile << point.x << "," << point.y << " ";
+	m_outFile << "\"";
+	m_outFile << " fill=\"none\" stroke=\"" << lineColor << "\" stroke-width=\"1\" />\n";
 }

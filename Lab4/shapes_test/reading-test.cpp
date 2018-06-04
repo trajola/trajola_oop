@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <sstream>
 #include "../shapes/readershapes.h"
 
 void VerifyCommandHandling(const std::string &command, const std::string &expectedOutput)
@@ -34,7 +35,7 @@ StartPoint = (1.000, 0.000)
 EndPoint = (3.500, 0.000)
 Perimeter = 2.500
 Area = 0.000
-Color = #FF0000
+OutlineColor = #FF0000
 )");
 };
 
@@ -47,7 +48,7 @@ StartPoint = (1.000, 0.000)
 EndPoint = (3.500, 0.000)
 Perimeter = 2.500
 Area = 0.000
-Color = #000000
+OutlineColor = #000000
 )");
 };
 

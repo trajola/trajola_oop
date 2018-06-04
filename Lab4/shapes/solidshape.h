@@ -1,14 +1,16 @@
 #pragma once
-#include "stdafx.h"
-#include "shape.h"
+#include "isolidshape.h"
 
-class ISolidShape : public IShape
+class CSolidShape : public ISolidShape
 {
 public:
-	ISolidShape() : m_fillColor("#FFFFFF") {};
-	virtual ~ISolidShape() {};
+	CSolidShape() : m_fillColor("#FFFFFF") {};
+
 	std::string GetFillColor() const;
 	void SetFillColor(std::string const & color);
+	
+	void AppendFinishProperties(std::ostream & strm) const override;
+
 private:
 	std::string m_fillColor;
 };

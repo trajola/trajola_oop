@@ -1,7 +1,9 @@
 #pragma once
 #include "stdafx.h"
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
 #include "rectangle.h"
-#include "canvasdrawable.h"
 
 CRectangle::CRectangle(CPoint const & vertex1, CPoint const & vertex2)
 	: m_vertex1(vertex1)
@@ -41,18 +43,11 @@ CPoint CRectangle::GetRightBottom() const
 	return { std::max(m_vertex1.x, m_vertex2.x), std::max(m_vertex1.y, m_vertex2.y) };
 }
 
-std::string CRectangle::ToString() const
+void CRectangle::AppendStartProperties(std::ostream & strm) const
 {
-	std::ostringstream str;
-	str << std::fixed << std::setprecision(3);
-	str << "Rectangle:\n"
+	strm << "Rectangle:\n"
 		<< "LeftTop = (" << GetLeftTop().x << ", " << GetLeftTop().y << ")\n"
-		<< "RightBottom = (" << GetRightBottom().x << ", " << GetRightBottom().y << ")\n"
-		<< "Perimeter = " << GetPerimeter() << "\n"
-		<< "Area = " << GetArea() << "\n"
-		<< "OutlineColor = " << GetOutlineColor() << "\n"
-		<< "FillColor = " << GetFillColor() << "\n";
-	return str.str();
+		<< "RightBottom = (" << GetRightBottom().x << ", " << GetRightBottom().y << ")\n";
 }
 
 void CRectangle::Draw(ICanvas & canvas) const
@@ -60,5 +55,10 @@ void CRectangle::Draw(ICanvas & canvas) const
 	canvas.FillPolygon({ { m_vertex1.x, m_vertex1.y },	
 					 	 { m_vertex1.x, m_vertex2.y },
 						 { m_vertex2.x, m_vertex2.y }, 
-						 { m_vertex2.x, m_vertex1.y } }, GetOutlineColor(), GetFillColor());
+						 { m_vertex2.x, m_vertex1.y } }, GetFillColor());
+
+	canvas.DrawPolygon({ { m_vertex1.x, m_vertex1.y },
+		{ m_vertex1.x, m_vertex2.y },
+		{ m_vertex2.x, m_vertex2.y },
+		{ m_vertex2.x, m_vertex1.y } }, GetOutlineColor());
 }

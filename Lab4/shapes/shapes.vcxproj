@@ -148,15 +148,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="canvas-svg.h" />
-    <ClInclude Include="canvas.h" />
-    <ClInclude Include="canvasdrawable.h" />
+    <ClInclude Include="icanvas.h" />
+    <ClInclude Include="icanvasdrawable.h" />
     <ClInclude Include="circle.h" />
     <ClInclude Include="linesegment.h" />
     <ClInclude Include="readershapes.h" />
     <ClInclude Include="rectangle.h" />
+    <ClInclude Include="ishape.h" />
     <ClInclude Include="shape.h" />
-    <ClInclude Include="solidshape.h" />
+    <ClInclude Include="isolidshape.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="solidshape.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="triangle.h" />

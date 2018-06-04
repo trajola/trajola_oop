@@ -1,6 +1,5 @@
 #pragma once
-#include "stdafx.h"
-#include "canvas.h"
+#include "icanvas.h"
 
 class ICanvasDrawable
 {

@@ -1,7 +1,8 @@
 #pragma once
 #include "stdafx.h"
+#include <sstream>
+#include <iomanip>
 #include "linesegment.h"
-#include "canvasdrawable.h"
 
 CLineSegment::CLineSegment(CPoint const & startPoint, CPoint const & endPoint)
 	: m_startPoint(startPoint)
@@ -26,18 +27,18 @@ double CLineSegment::GetArea() const
 	return 0;
 }
 
-std::string CLineSegment::ToString() const
+
+void CLineSegment::AppendStartProperties(std::ostream & strm) const
 {
-	std::ostringstream str;
-	str << std::fixed << std::setprecision(3);
-	str << "LineSegment:\n"
+	strm << "LineSegment:\n"
 		<< "StartPoint = (" << GetStartPoint().x << ", " << GetStartPoint().y << ")\n"
-		<< "EndPoint = (" << GetEndPoint().x << ", " << GetEndPoint().y << ")\n"
-		<< "Perimeter = " << GetPerimeter() << "\n"
-		<< "Area = " << GetArea() << "\n"
-		<< "Color = " << GetOutlineColor() << "\n";
-	return str.str();
+		<< "EndPoint = (" << GetEndPoint().x << ", " << GetEndPoint().y << ")\n";
 }
+
+void CLineSegment::AppendFinishProperties(std::ostream & strm) const
+{
+}
+
 
 CPoint CLineSegment::GetStartPoint() const
 {

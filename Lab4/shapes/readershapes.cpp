@@ -1,4 +1,7 @@
+#pragma once
 #include "stdafx.h"
+#include <functional>
+#include <sstream>
 #include "readershapes.h"
 #include "shape.h"
 #include "linesegment.h"
@@ -17,7 +20,7 @@ CReaderShapes::CReaderShapes(std::istream &input)
 {
 }
 
-std::shared_ptr<IShape> CReaderShapes::ExecuteCommand() const
+std::shared_ptr<CShape> CReaderShapes::ExecuteCommand() const
 {
 	std::string commandLine;
 	std::getline(m_input, commandLine);
@@ -34,7 +37,7 @@ std::shared_ptr<IShape> CReaderShapes::ExecuteCommand() const
 	return nullptr;
 }
 
-std::shared_ptr<IShape> CReaderShapes::ReadLine(std::istream &args) const
+std::shared_ptr<CShape> CReaderShapes::ReadLine(std::istream &args) const
 {
 	CPoint startPoint, endPoint;
 	std::string outlineColor, input;
@@ -68,7 +71,7 @@ std::shared_ptr<IShape> CReaderShapes::ReadLine(std::istream &args) const
 		return std::make_shared<CLineSegment>(startPoint, endPoint);
 }
 
-std::shared_ptr<IShape> CReaderShapes::ReadCircle(std::istream &args) const
+std::shared_ptr<CShape> CReaderShapes::ReadCircle(std::istream &args) const
 {
 	CPoint center;
 	double radius;
@@ -102,7 +105,7 @@ std::shared_ptr<IShape> CReaderShapes::ReadCircle(std::istream &args) const
 }
 
 
-std::shared_ptr<IShape> CReaderShapes::ReadTriangle(std::istream &args) const
+std::shared_ptr<CShape> CReaderShapes::ReadTriangle(std::istream &args) const
 {
 	CPoint vertex1, vertex2, vertex3;
 	std::string outlineColor, fillColor, input;
@@ -146,7 +149,7 @@ std::shared_ptr<IShape> CReaderShapes::ReadTriangle(std::istream &args) const
 		return std::make_shared<CTriangle>(vertex1, vertex2, vertex3);
 }
 
-std::shared_ptr<IShape> CReaderShapes::ReadRectangle(std::istream &args) const
+std::shared_ptr<CShape> CReaderShapes::ReadRectangle(std::istream &args) const
 {
 	CPoint vertex1, vertex2;
 	std::string outlineColor, fillColor, input;
@@ -183,5 +186,3 @@ std::shared_ptr<IShape> CReaderShapes::ReadRectangle(std::istream &args) const
 	else
 		return std::make_shared<CRectangle>(vertex1, vertex2);
 }
-
-

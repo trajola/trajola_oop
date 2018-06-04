@@ -1,9 +1,10 @@
 #pragma once
 #include "stdafx.h"
 #define _USE_MATH_DEFINES
-#include "circle.h"
 #include <math.h>
-#include "canvasdrawable.h"
+#include <sstream>
+#include <iomanip>
+#include "circle.h"
 
 CCircle::CCircle(CPoint const & center, double radius)
 	: m_center(center)
@@ -39,18 +40,11 @@ double CCircle::GetRadius() const
 	return m_radius;
 }
 
-std::string CCircle::ToString() const
+void CCircle::AppendStartProperties(std::ostream & strm) const
 {
-	std::ostringstream str;
-	str << std::fixed << std::setprecision(3);
-	str << "Circle:\n"
+	strm << "Circle:\n"
 		<< "Center = (" << GetCenter().x << ", " << GetCenter().y << ")\n"
-		<< "Radius = " << GetRadius() << "\n"
-		<< "Perimeter = " << GetPerimeter() << "\n"
-		<< "Area = " << GetArea() << "\n"
-		<< "OutlineColor = " << GetOutlineColor() << "\n"
-		<< "FillColor = " << GetFillColor() << "\n";
-	return str.str();
+		<< "Radius = " << GetRadius() << "\n";
 }
 
 void CCircle::Draw(ICanvas & canvas) const
