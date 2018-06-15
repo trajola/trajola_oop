@@ -31,7 +31,7 @@ TEST_CASE("numerator and denominator are normalized")
 {
 	ExpectOperationSuccess(CRational(10, 5), 2, 1);
 	ExpectOperationSuccess(CRational(-5, 10), -1, 2);
-	ExpectOperationSuccess(CRational(0, 2), 0, 2);
+	ExpectOperationSuccess(CRational(0, 2), 0, 1);
 }
 
 TEST_CASE("can't create rational with denominator 0")
@@ -42,7 +42,7 @@ TEST_CASE("can't create rational with denominator 0")
 TEST_CASE("can convert rational to double")
 {
 	CHECK(CRational(1, 2).ToDouble() == 0.5);
-	CHECK(CRational(-5, 20).ToDouble() == -0.2);
+	CHECK(CRational(-5, 20).ToDouble() == -0.25);
 	CHECK(CRational(0, 40).ToDouble() == 0.0);
 }
 
@@ -78,7 +78,7 @@ TEST_CASE("can use binary + operation")
 
 TEST_CASE("can use binary - operation")
 {
-	ExpectOperationSuccess(CRational(5, 3) - CRational(2, 5), 16, 15);
+	ExpectOperationSuccess(CRational(5, 3) - CRational(2, 5), 19, 15);
 	ExpectOperationSuccess(CRational(2, 9) - CRational(8, 9), -2, 3);
 	ExpectOperationSuccess(CRational(8, 9) - CRational(-1, 9), 1, 1);
 	ExpectOperationSuccess(CRational(5, 3) - 2, -1, 3);
@@ -94,7 +94,7 @@ TEST_CASE("can use += operation")
 
 TEST_CASE("can use -= operation")
 {
-	ExpectOperationSuccess(CRational(3, 2) -= CRational(1, 4), 1, 2);
+	ExpectOperationSuccess(CRational(3, 2) -= CRational(2, 4), 1, 1);
 	ExpectOperationSuccess(CRational(1, 2) -= CRational(-1, 2), 1, 1);
 	ExpectOperationSuccess(CRational(1, 2) -= 1, -1, 2);
 }
@@ -115,7 +115,7 @@ TEST_CASE("can use binary / operation")
 TEST_CASE("can use *= operation")
 {
 	ExpectOperationSuccess(CRational(5, 3) *= CRational(3, 5), 1, 1);
-	ExpectOperationSuccess(CRational(4, 5) *= -2, -4, 5);
+	ExpectOperationSuccess(CRational(4, 5) *= -2, -8, 5);
 }
 
 TEST_CASE("can use /= operation")
@@ -178,12 +178,12 @@ TEST_CASE("can use operator << ")
 	CHECK(outStr.str() == "-1/3");
 }
 
-TEST_CASE("can use operator << ")
+TEST_CASE("can use operator >>")
 {
-	std::ostringstream inStr;
+	std::istringstream inStr;
 	inStr.str("3/5");
 	CRational number;
-	inStr << number;
+	inStr >> number;
 	CHECK(number == CRational(3, 5));
 }
 

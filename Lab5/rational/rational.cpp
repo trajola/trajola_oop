@@ -3,18 +3,6 @@
 #include "rational.h"
 #include <numeric>
 
-CRational::CRational()
-	: m_numerator(0)
-	, m_denominator(1)
-{
-}
-
-CRational::CRational(int value)
-	: m_numerator(value)
-	, m_denominator(1)
-{
-}
-
 CRational::CRational(int numerator, int denominator)
 	: m_numerator(numerator)
 	, m_denominator(denominator)
@@ -25,7 +13,7 @@ CRational::CRational(int numerator, int denominator)
 	if (m_denominator < 0)
 	{
 		m_numerator = -m_numerator;
-		m_denominator = m_denominator;
+		m_denominator = -m_denominator;
 	}
 
 	int gcd = std::gcd(m_numerator, m_denominator);
@@ -45,7 +33,7 @@ int CRational::GetDenominator() const
 
 double CRational::ToDouble() const
 {
-	return static_cast<double>(m_numerator / m_denominator);
+	return static_cast<double>(m_numerator) / m_denominator;
 }
 
 std::pair<int, CRational> CRational::ToCompoundFraction() const
