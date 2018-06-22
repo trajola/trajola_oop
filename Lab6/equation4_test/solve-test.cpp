@@ -4,11 +4,11 @@
 
 bool SolutionIsEqualToExpected(EquationRoot const & solution, int numRoots, std::vector<double> const & roots)
 {
-	if (solution.numRoots != numRoots)
+	if (solution.size() != numRoots)
 		return false;
 
 	for (int i = 0; i < numRoots; i++)
-		if (abs(solution.roots[i] - roots[i]) > 1.0e-6)
+		if (abs(solution[i] - roots[i]) > 1.0e-6)
 			return false;
 	return true;
 };
@@ -52,7 +52,4 @@ TEST_CASE("Solve4 trows exeption if no real roots")
 	CHECK_THROWS_AS(Solve4(1, 1, 1, 1, 1), std::domain_error);
 	CHECK_THROWS_AS(Solve4(16, 0, 145, 0, 9), std::domain_error);
 };
-
-
-
 

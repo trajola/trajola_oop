@@ -1,12 +1,7 @@
 #pragma once
 #include <vector>
 
-struct EquationRoot
-{
-	int numRoots = 0;
-	std::vector<double> roots;
-};
-
+typedef std::vector<double> EquationRoot;
 
 EquationRoot Solve4(double a, double b, double c, double d, double e);
 EquationRoot Solve3(double a, double b, double c, double d);
