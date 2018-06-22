@@ -44,7 +44,7 @@ void HandleAddToDictionary(StateType& state, std::string & readStrPrev, std::str
 	return;
 }
 
-void ProcessTranslation(Dictionary & dict, bool dictChanged)
+void ProcessTranslation(Dictionary & dict, bool& dictChanged)
 {
 	StateType state = TRANSLATE;
 	std::string readStr, readStrPrev;
@@ -57,7 +57,7 @@ void ProcessTranslation(Dictionary & dict, bool dictChanged)
 		{ 
 			if (state == TRANSLATE)
 				HandleTranslate(state, readStrPrev, readStr, dict, dictChanged);
-			if (state == ADD_TO_DICTIONARY)
+			else if (state == ADD_TO_DICTIONARY)
 				HandleAddToDictionary(state, readStrPrev, readStr, dict, dictChanged);
 		}
 	}
@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 {
 	Dictionary dict;
 	std::string dictFileName = "dict.txt";
-	if (argc == 1)
+	if (argc == 2)
 	{
 		dictFileName = argv[1];
 	}
