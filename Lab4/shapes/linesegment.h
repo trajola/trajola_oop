@@ -2,23 +2,23 @@
 #include "point.h"
 #include "shape.h"
 
-class CLineSegment : public CShape
+class CLineSegment final : public CShape
 {
 public:
 	CLineSegment(CPoint const & startPoint, CPoint const & endPoint);
 	CLineSegment(CPoint const & startPoint, CPoint const & endPoint, std::string const & color);
 	
-	double GetPerimeter() const override final;
-	double GetArea() const override final;
+	double GetPerimeter() const override;
+	double GetArea() const override;
 	
 	CPoint GetStartPoint() const;
 	CPoint GetEndPoint() const;
 
-	void AppendStartProperties(std::ostream & strm) const override final;
-	void AppendFinishProperties(std::ostream & strm) const override final;
-
-	void  Draw(ICanvas & canvas) const override final;
+	void  Draw(ICanvas & canvas) const override;
 
 private:
+	void AppendStartProperties(std::ostream & strm) const override;
+	void AppendFinishProperties(std::ostream & strm) const override;
+
 	CPoint m_startPoint, m_endPoint;
 };

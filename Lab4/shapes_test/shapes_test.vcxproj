@@ -165,9 +165,9 @@
     <ClInclude Include="..\shapes\circle.h" />
     <ClInclude Include="..\shapes\linesegment.h" />
     <ClInclude Include="..\shapes\point.h" />
-    <ClInclude Include="..\shapes\readershapes.h" />
     <ClInclude Include="..\shapes\rectangle.h" />
     <ClInclude Include="..\shapes\shape.h" />
+    <ClInclude Include="..\shapes\shapesreader.h" />
     <ClInclude Include="..\shapes\triangle.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -176,9 +176,9 @@
     <ClCompile Include="..\shapes\canvas-svg.cpp" />
     <ClCompile Include="..\shapes\circle.cpp" />
     <ClCompile Include="..\shapes\linesegment.cpp" />
-    <ClCompile Include="..\shapes\readershapes.cpp" />
     <ClCompile Include="..\shapes\rectangle.cpp" />
     <ClCompile Include="..\shapes\shape.cpp" />
+    <ClCompile Include="..\shapes\shapesreader.cpp" />
     <ClCompile Include="..\shapes\solidshape.cpp" />
     <ClCompile Include="..\shapes\triangle.cpp" />
     <ClCompile Include="circle-test.cpp" />

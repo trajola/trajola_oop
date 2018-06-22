@@ -168,7 +168,7 @@
     <ClCompile Include="circle.cpp" />
     <ClCompile Include="linesegment.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="readershapes.cpp" />
+    <ClCompile Include="shapesreader.cpp" />
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="solidshape.cpp" />

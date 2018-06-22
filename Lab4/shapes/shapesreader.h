@@ -16,6 +16,6 @@ private:
 	std::shared_ptr<CShape> ReadTriangle(std::istream &args) const;
 	std::shared_ptr<CShape> ReadRectangle(std::istream &args) const;
 	std::istream &m_input;
-	typedef std::map<std::string, std::function<std::shared_ptr<CShape>(std::istream & args)>> Actions;
+	using Actions = std::map<std::string, std::function<std::shared_ptr<CShape>(std::istream & args)>>;
 	const Actions m_actions;
 };

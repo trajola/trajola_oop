@@ -45,10 +45,10 @@
     <ClInclude Include="..\shapes\triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\shapes\readershapes.h">
+    <ClInclude Include="..\shapes\rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\shapes\rectangle.h">
+    <ClInclude Include="..\shapes\shapesreader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,13 +92,13 @@
     <ClCompile Include="reading-test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\shapes\readershapes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\shapes\rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rectangle-test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shapes\shapesreader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
