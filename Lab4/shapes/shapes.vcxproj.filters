@@ -36,9 +36,6 @@
     <ClInclude Include="triangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="readershapes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,6 +55,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="solidshape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shapesreader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

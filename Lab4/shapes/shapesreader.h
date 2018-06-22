@@ -4,11 +4,11 @@
 #include <functional>
 #include "shape.h"
 
-class CReaderShapes
+class CShapesReader
 {
 public:
-	CReaderShapes(std::istream &input);
-	std::shared_ptr<CShape> ExecuteCommand() const;
+	CShapesReader(std::istream &input);
+	std::shared_ptr<CShape> ReadShape() const;
 
 private:
 	std::shared_ptr<CShape> ReadLine(std::istream &args) const;

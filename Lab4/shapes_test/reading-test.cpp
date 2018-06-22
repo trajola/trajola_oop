@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include <sstream>
-#include "../shapes/readershapes.h"
+#include "../shapes/shapesreader.h"
 
 void VerifyCommandHandling(const std::string &command, const std::string &expectedOutput)
 {
 	std::stringstream input;
 	input = std::stringstream();
-	CReaderShapes readShape(input);
+	CShapesReader shapeReader(input);
 	std::shared_ptr<IShape> shape;
 
 	CHECK(input << command);
-	shape = readShape.ExecuteCommand();
+	shape = shapeReader.ReadShape();
 	CHECK(shape->ToString() == expectedOutput);
 }
 
@@ -18,11 +18,11 @@ void ExpectOperationFailure(const std::string &command)
 {
 	std::stringstream input;
 	input = std::stringstream();
-	CReaderShapes createShape(input);
+	CShapesReader shapeReader(input);
 	std::shared_ptr<IShape> shape;
 
 	CHECK(input << command);
-	shape = createShape.ExecuteCommand();
+	shape = shapeReader.ReadShape();
 	CHECK(!shape);
 }
 

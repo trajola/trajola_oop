@@ -152,7 +152,7 @@
     <ClInclude Include="icanvasdrawable.h" />
     <ClInclude Include="circle.h" />
     <ClInclude Include="linesegment.h" />
-    <ClInclude Include="readershapes.h" />
+    <ClInclude Include="shapesreader.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="ishape.h" />
     <ClInclude Include="shape.h" />
