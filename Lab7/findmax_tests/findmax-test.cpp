@@ -32,17 +32,15 @@ TEST_CASE("Find max in strings array")
 
 TEST_CASE("Find max in char* strings array")
 {
-	std::vector<char *> arr;
-	char* maxValue;
+	std::vector<const char *> arr;
+	const char * maxValue;
 	CHECK(!FindMax(arr, maxValue));
 	char s1[] = "hello";
 	char s2[] = "fox";
-	char s3[] = "kittyy";
-	arr.push_back(s1);
-	arr.push_back(s2);
-	arr.push_back(s3);
-	FindMax(arr, maxValue);
-	//CHECK(maxValue == "fox");
+	char s3[] = "kitty";
+	arr = { s1, s2, s3 };
+	FindMax(arr, maxValue); 
+	CHECK(strcmp(maxValue, "kitty") == 0);
 }
 
 struct Athlete 
@@ -57,22 +55,11 @@ std::vector<Athlete> athletes = {
 	{"Tree", 189, 95}
 };
 
-bool LessWeight(Athlete const & a1, Athlete const & a2)
-{
-	return (a1.weight < a2.weight);
-}
-
-bool LessHeight(Athlete const & a1, Athlete const & a2)
-{
-	return (a1.height < a2.height);
-}
-
-
 TEST_CASE("Return false for empty arr")
 {
 	Athlete max;
 	std::vector<Athlete> emptyArr;
-	CHECK(FindMaxEx(emptyArr, max, LessWeight) == false);
+	CHECK(FindMaxEx(emptyArr, max, [](Athlete const & a1, Athlete const & a2) {return (a1.height < a2.height);}) == false);
 }
 
 TEST_CASE("Find max height athlete")

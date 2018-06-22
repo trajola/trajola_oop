@@ -9,7 +9,7 @@ bool FindMax(std::vector<T> const & arr, T & maxValue)
 	if (arr.empty())
 		return false;
 
-	auto max = arr.begin();
+	auto max = arr.cbegin();
 	for (auto i = arr.cbegin(); i != arr.cend(); i++)
 		if (*max < *i)
 			max = i;
@@ -19,7 +19,7 @@ bool FindMax(std::vector<T> const & arr, T & maxValue)
 }
 
 template <>
-bool FindMax<const char *>(std::vector<const char*> const & arr, const char * & maxValue)
+bool FindMax<const char*>(std::vector<const char*> const & arr, const char * & maxValue)
 {
 	if (arr.empty())
 		return false;
