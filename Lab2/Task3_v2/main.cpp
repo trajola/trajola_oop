@@ -11,83 +11,90 @@ enum StateType
 {
 	EXIT,
 	TRANSLATE,
-	ADD_WORD_TO_DICTIONARY,
-	SAVE_DICTIONARY
+	ADD_TO_DICTIONARY,
 };
 
-
-void HandleAction(StateType& state, std::string & inStrPrev, std::string const& inStr, Dictionary& dict, bool& dictChanged)
+void HandleTranslate(StateType& state, std::string & readStrPrev, std::string const& readStr, Dictionary& dict, bool& dictChanged)
 {
-	if (inStr == "...")
+	std::string translatedStr;
+	Translate(readStr, translatedStr, dict);
+	if (translatedStr != "")
+		std::cout << translatedStr << "\n";
+	else
 	{
-		if (dictChanged)
-		{
-			state = SAVE_DICTIONARY;
-		}		
-		else
+		state = ADD_TO_DICTIONARY;
+		readStrPrev = readStr;
+		std::cout << "Don't know. Enter translation or empty enter to reject.\n";
+	}
+	return;
+}
+
+void HandleAddToDictionary(StateType& state, std::string & readStrPrev, std::string const& readStr, Dictionary& dict, bool& dictChanged)
+{
+	if (readStr != "")
+	{
+		AddWord(readStrPrev, readStr, dict);
+		dictChanged = true;
+		std::cout << "The word \"" << readStrPrev << "\" and its translation \"" << readStr << "\" is added.\n";
+	}
+	else
+		std::cout << "The word \"" << readStrPrev << "\" is ignored.\n";
+
+	state = TRANSLATE;
+	return;
+}
+
+void ProcessTranslation(Dictionary & dict, bool dictChanged)
+{
+	StateType state = TRANSLATE;
+	std::string readStr, readStrPrev;
+	while (state != EXIT)
+	{
+		std::cout << ">";
+		if (!std::getline(std::cin, readStr) || (readStr == "..."))
 			state = EXIT;
-		return;
-	}
-
-	if (state == TRANSLATE)
-	{
-		std::string translation;
-		Translate(inStr, translation, dict);
-		if (translation != "")
-			std::cout << translation << "\n";
 		else
-		{
-			state = ADD_WORD_TO_DICTIONARY;
-			inStrPrev = inStr;
-			std::cout << "Don't know. Enter translation or empty enter to reject.\n";
+		{ 
+			if (state == TRANSLATE)
+				HandleTranslate(state, readStrPrev, readStr, dict, dictChanged);
+			if (state == ADD_TO_DICTIONARY)
+				HandleAddToDictionary(state, readStrPrev, readStr, dict, dictChanged);
 		}
-		return;
 	}
+}
 
-	if (state == ADD_WORD_TO_DICTIONARY)
+void HandleDictSaving(Dictionary & dict, std::string const & dictFileName)
+{
+	std::cout << "The dictionary has been changed. Enter \"Y\" or \"y\" to save.\n";
+	std::string action;
+	if (std::getline(std::cin, action) && (action == "Y" || action == "y"))
 	{
-		if (inStr != "")
-		{
-			AddWord(inStrPrev, inStr, dict);
-			dictChanged = true;
-			std::cout << "The word \"" << inStrPrev << "\" and its translation \""<< inStr << "\" is added.\n";
-		}
-		else
-		{
-			std::cout << "The word \"" << inStrPrev << "\" is ignored.\n";
-		}
-		state = TRANSLATE;
-		return;
+		SaveDictionaryToFile(dict, dictFileName);
+		std::cout << "Changes to dictionary are saved, exiting.\n";
 	}
+	else
+		std::cout << "Changes to dictionary are not saved, exiting.\n";
 }
 
 int main(int argc, char* argv[])
 {
 	Dictionary dict;
-	ReadDictionaryFromFile(dict, argv[1]);
+	std::string dictFileName = "dict.txt";
+	if (argc == 1)
+	{
+		dictFileName = argv[1];
+	}
+	else
+		std::cout << "Default dictionary name is " << dictFileName << "\n";
+	ReadDictionaryFromFile(dict, dictFileName);
 	bool dictChanged = false;
-	StateType state = TRANSLATE;
-	std::string inStr, inStrPrev;
-	std::cout << "Hi! Enter words to translate. \n";
-	while (state != EXIT && state != SAVE_DICTIONARY)
-	{
-		std::cout << ">";
-		if (!std::getline(std::cin, inStr))
-			inStr = "...";
-		HandleAction(state, inStrPrev, inStr, dict, dictChanged);
-	}
 
-	if (state == SAVE_DICTIONARY)
-	{
-		std::cout << "The dictionary has been changed. Enter \"Y\" or \"y\" to save.\n";
-		if (std::getline(std::cin, inStr) && (inStr == "Y" || inStr == "y"))
-		{
-			SaveDictionaryToFile(dict, argv[1]);
-			std::cout << "Changes to dictionary are saved, exiting.\n";
-		}
-		else
-			std::cout << "Changes to dictionary are not saved, exiting.\n";
-	}
+	std::cout << "Hi! Enter words to translate. \n";
+	ProcessTranslation(dict, dictChanged);
+
+	if (dictChanged)
+		HandleDictSaving(dict, dictFileName);
+
 	std::cout << "GoodBye.\n";
 	return 0;
 }

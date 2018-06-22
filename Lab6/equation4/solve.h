@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-typedef std::vector<double> EquationRoot;
+using EquationRoot = std::vector<double>;
 
 EquationRoot Solve4(double a, double b, double c, double d, double e);
 EquationRoot Solve3(double a, double b, double c, double d);
