@@ -89,6 +89,7 @@ TEST_CASE("can use += operation")
 {
 	ExpectOperationSuccess(CRational(1, 2) += CRational(1, 4), 3, 4);
 	ExpectOperationSuccess(CRational(1, 2) += CRational(-1, 2), 0, 1);
+	ExpectOperationSuccess(CRational(1, 2) += CRational(3, 2), 2, 1);
 	ExpectOperationSuccess(CRational(1, 2) += 1, 3, 2);
 }
 
@@ -96,6 +97,7 @@ TEST_CASE("can use -= operation")
 {
 	ExpectOperationSuccess(CRational(3, 2) -= CRational(2, 4), 1, 1);
 	ExpectOperationSuccess(CRational(1, 2) -= CRational(-1, 2), 1, 1);
+	ExpectOperationSuccess(CRational(5, 2) -= CRational(1, 2), 2, 1);
 	ExpectOperationSuccess(CRational(1, 2) -= 1, -1, 2);
 }
 
@@ -115,12 +117,14 @@ TEST_CASE("can use binary / operation")
 TEST_CASE("can use *= operation")
 {
 	ExpectOperationSuccess(CRational(5, 3) *= CRational(3, 5), 1, 1);
+	ExpectOperationSuccess(CRational(4, 5) *= CRational(3, 4), 3, 5);
 	ExpectOperationSuccess(CRational(4, 5) *= -2, -8, 5);
 }
 
 TEST_CASE("can use /= operation")
 {
 	ExpectOperationSuccess(CRational(5, 3) /= CRational(5), 1, 3);
+	ExpectOperationSuccess(CRational(15, 8) /= CRational(-3, 2), -5, 4);
 	ExpectOperationSuccess(CRational(5, 3) /= -5, -1, 3);
 	CHECK_THROWS_AS(CRational(1) /= CRational(), std::invalid_argument);
 }
