@@ -83,4 +83,13 @@ TEST_CASE("Find max weight athlete")
 	CHECK(max.weight == 95);
 	CHECK(max.name == "Tree");
 }
+
+TEST_CASE("Find max in default mode with <")
+{
+	std::vector<double> arr;
+	double maxValue;
+	CHECK(!FindMax(arr, maxValue));
+	arr = { 1.0, -5.5, 8.9, 9.1 };
+	CHECK((FindMaxEx(arr, maxValue) && maxValue == 9.1) == true);
+}
  

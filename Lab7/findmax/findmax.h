@@ -33,8 +33,8 @@ bool FindMax<const char*>(std::vector<const char*> const & arr, const char * & m
 	return true;
 }
 
-template < typename T, typename Less >
-bool FindMaxEx(std::vector<T> const & arr, T & maxValue, Less const& less)
+template < typename T, typename Less = std::less<T> >
+bool FindMaxEx(std::vector<T> const & arr, T & maxValue, Less const& less = Less())
 {
 	if (arr.empty())
 		return false;
