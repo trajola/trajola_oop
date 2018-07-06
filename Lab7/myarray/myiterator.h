@@ -97,37 +97,45 @@ public:
 
 	T& operator*() const noexcept
 	{
-		return assert(*m_pointer);
+		assert(m_pointer);
+		return *m_pointer;
 	}
 
 	T* operator->() const noexcept
 	{
-		return assert(&(*m_pointer));
+		assert(m_pointer);
+		return &(*m_pointer);
 	}
 
 	T& operator[](int index) const noexcept
 	{
-		return assert(*(m_pointer + index));
+		assert(m_pointer + index);
+		return *(m_pointer + index);
 	}
 
 	CMyIterator const operator-(int number) const noexcept
 	{
-		return assert(static_cast<CMyIterator>(m_pointer - number));
+		assert(m_pointer - number);
+		return static_cast<CMyIterator>(m_pointer - number);
 	}
 
 	ptrdiff_t const operator-(CMyIterator const & it) const noexcept
 	{
-		return assert(static_cast<ptrdiff_t>(m_pointer - it.m_pointer));
+		assert(m_pointer); 
+		assert(it.m_pointer);
+		return static_cast<ptrdiff_t>(m_pointer - it.m_pointer);
 	}
 
 	CMyIterator const operator+(int number) const noexcept
 	{
-		return assert(static_cast<CMyIterator>(m_pointer + number));
+		assert(m_pointer + number);
+		return static_cast<CMyIterator>(m_pointer + number);
 	}
 };
 
 template <typename T>
 CMyIterator<T> const operator+(int number, CMyIterator<T> const & it) noexcept
 {
-	return assert(static_cast<CMyIterator<T>>(it.m_pointer + number));
+	assert(it.m_pointer + number);
+	return static_cast<CMyIterator<T>>(it.m_pointer + number);
 }
