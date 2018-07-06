@@ -1,4 +1,5 @@
 #pragma once
+#include <assert.h>
 
 template <typename T>
 class CMyIterator
@@ -26,47 +27,41 @@ public:
 	{
 	}
 
-	CMyIterator operator=(const CMyIterator& other) 
-	{ 
-		m_pointer = other.m_pointer;
-		return *this; 
-	}
-
 	CMyIterator& operator--() noexcept
 	{
-		--m_pointer;
+		assert(--m_pointer);
 		return *this;
 	}
 
-	CMyIterator& operator+=(ptrdiff_t const &number) noexcept
+	CMyIterator& operator+=(int const &number) noexcept
 	{
-		m_pointer += number;
+		assert(m_pointer += number);
 		return *this;
 	}
 
-	CMyIterator& operator-=(ptrdiff_t const &number) noexcept
+	CMyIterator& operator-=(int const &number) noexcept
 	{
-		m_pointer -= number;
+		assert(m_pointer -= number);
 		return *this;
 	}
 
-	CMyIterator const operator--(ptrdiff_t) noexcept
+	CMyIterator const operator--(int) noexcept
 	{
 		CMyIterator temp(*this);
-		--m_pointer;
+		assert(--m_pointer);
 		return temp;
 	}
 
 	CMyIterator& operator++() noexcept
 	{
-		++m_pointer;
+		assert(++m_pointer);
 		return *this;
 	}
 
-	CMyIterator const operator++(ptrdiff_t) noexcept
+	CMyIterator const operator++(int) noexcept
 	{
 		CMyIterator temp(*this);
-		++m_pointer;
+		assert(++m_pointer);
 		return temp;
 	}
 
@@ -100,63 +95,39 @@ public:
 		return m_pointer != other.m_pointer;
 	}
 
-	T& operator*() noexcept
+	T& operator*() const noexcept
 	{
-		return *m_pointer;
-	}
-	const T& operator*() const noexcept
-	{
-		return *m_pointer;
+		return assert(*m_pointer);
 	}
 
-	T* operator->() noexcept
+	T* operator->() const noexcept
 	{
-		return &(*m_pointer);
+		return assert(&(*m_pointer));
 	}
 
-	const T* operator->() const noexcept
+	T& operator[](int index) const noexcept
 	{
-		return &(*m_pointer);
+		return assert(*(m_pointer + index));
 	}
 
-	T& operator[](ptrdiff_t index) const noexcept
+	CMyIterator const operator-(int number) const noexcept
 	{
-		return *(m_pointer + index);
-	}
-
-	CMyIterator const operator-(ptrdiff_t number) noexcept
-	{
-		return static_cast<CMyIterator>(m_pointer - number);
-	}
-
-	CMyIterator operator-(ptrdiff_t number) const noexcept
-	{
-		return static_cast<CMyIterator>(m_pointer - number);
-	}
-
-	ptrdiff_t operator-(CMyIterator const & it) noexcept
-	{
-		return static_cast<ptrdiff_t>(m_pointer - it.m_pointer);
+		return assert(static_cast<CMyIterator>(m_pointer - number));
 	}
 
 	ptrdiff_t const operator-(CMyIterator const & it) const noexcept
 	{
-		return static_cast<ptrdiff_t>(m_pointer - it.m_pointer);
+		return assert(static_cast<ptrdiff_t>(m_pointer - it.m_pointer));
 	}
 
-	CMyIterator operator+(ptrdiff_t number) noexcept
+	CMyIterator const operator+(int number) const noexcept
 	{
-		return static_cast<CMyIterator>(m_pointer + number);
-	}
-
-	CMyIterator const operator+(ptrdiff_t number) const noexcept
-	{
-		return static_cast<CMyIterator>(m_pointer + number);
+		return assert(static_cast<CMyIterator>(m_pointer + number));
 	}
 };
 
 template <typename T>
-CMyIterator<T> const operator+(ptrdiff_t number, CMyIterator<T> const & it) noexcept
+CMyIterator<T> const operator+(int number, CMyIterator<T> const & it) noexcept
 {
-	return static_cast<CMyIterator<T>>(it.m_pointer + number);
+	return assert(static_cast<CMyIterator<T>>(it.m_pointer + number));
 }
