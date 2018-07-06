@@ -1,4 +1,5 @@
 #pragma once
+#include "myiterator.h"
 
 template <typename T>
 class CMyArray
@@ -90,7 +91,22 @@ public:
 		if (currentSize <= newSize)
 		{
 			for (size_t i = 0; i < newSize - currentSize; ++i)
-				Append(T());
+			{
+				auto oldBegin = m_begin;
+				auto oldEnd = m_end;
+				auto oldCapacity = m_endOfCapacity;
+				try
+				{
+					Append(T());
+				}
+				catch (...)
+				{
+					m_begin = oldBegin;
+					m_end = oldEnd;
+					auto m_endOfCapacity = oldCapacity;
+					throw;
+				}
+			}
 		}
 		else
 		{
@@ -146,103 +162,72 @@ public:
 			throw std::out_of_range("Out of range");
 		return m_begin[position];
 	}
-private:
-	template <typename T>
-	class CMyIterator
+
+	using iterator = CMyIterator<T>;
+	using const_iterator = CMyIterator<const T>;
+	using reverse_iterator = std::reverse_iterator<iterator>;
+	using reverse_const_iterator = std::reverse_iterator<const_iterator>;
+	
+	iterator begin() noexcept
 	{
-	public:
-		CMyIterator(T* p = nullptr) noexcept
-			: m_pointer(p)
-		{
-		};
-
-		CMyIterator& operator--() noexcept
-		{
-			--m_pointer;
-			return *this;
-		};
-
-		CMyIterator& operator++() noexcept
-		{
-			++m_pointer;
-			return *this;
-		};
-
-		bool operator<(CMyIterator const &other) const noexcept
-		{
-			return m_pointer < other.m_pointer;
-		};
-
-		bool operator>(CMyIterator const &other) const noexcept
-		{
-			return m_pointer > other.m_pointer;
-		};
-
-		bool operator>=(CMyIterator const &other) const noexcept
-		{
-			return m_pointer >= other.m_pointer;
-		};
-
-		bool operator<=(CMyIterator const &other) const noexcept
-		{
-			return m_pointer <= other.m_pointer;
-		};
-
-		bool operator==(CMyIterator const &other) const noexcept
-		{
-			return m_pointer == other.m_pointer;
-		};
-
-		bool operator!=(CMyIterator const &other) const noexcept
-		{
-			return m_pointer != other.m_pointer;
-		};
-
-		size_t operator-(CMyIterator const &other) const noexcept
-		{
-			return m_pointer - other.m_pointer;
-		};
-
-		CMyIterator operator+(size_t number) const noexcept
-		{
-			return static_cast<CMyIterator>(m_pointer + number);
-		};
-
-		CMyIterator operator-(size_t number) const noexcept
-		{
-			return static_cast<CMyIterator>(m_pointer - number);
-		};
-
-		T& operator*() const noexcept
-		{
-			return *m_pointer;
-		};
-
-		T* operator->() const noexcept
-		{
-			return &(*m_pointer);
-		};
-
-		T& operator[](size_t index) const noexcept
-		{
-			return *(m_pointer + index);
-		};
-
-	private:
-		CMyIterator() noexcept;
-		T * m_pointer = nullptr;
+		return iterator(m_begin);
 	};
 
-public:	
-	CMyIterator<T> begin() const noexcept
+	iterator end() noexcept
 	{
-		return CMyIterator<T>(m_begin);
+		return iterator(m_end);
 	};
 
-	CMyIterator<T> end() const noexcept
+	iterator begin() const noexcept
 	{
-		return CMyIterator<T>(m_end);
+		return const_iterator(m_begin);
 	};
+
+	iterator end() const noexcept
+	{
+		return const_iterator(m_end);
+	};
+
+	const_iterator const cbegin() noexcept
+	{
+		return const_iterator(m_begin);
+	};
+
+	const_iterator const cend() noexcept
+	{
+		return const_iterator(m_end);
+	};
+
+	reverse_iterator rbegin() noexcept
+	{
+		return reverse_iterator(iterator(m_end));
+	};
+
+	reverse_iterator rend() noexcept
+	{
+		return reverse_iterator(iterator(m_begin));
+	};
+
+	reverse_iterator rbegin() const noexcept
+	{
+		return reverse_const_iterator(const_iterator(m_end));
+	};
+
+	reverse_iterator rend() const noexcept
+	{
+		return reverse_const_iterator(const_iterator(m_begin));
+	};
+
+	reverse_const_iterator const crbegin() const noexcept
+	{
+		return reverse_const_iterator(const_iterator(m_end));
+	};
+
+	reverse_const_iterator const crend() noexcept
+	{
+		return reverse_const_iterator(const_iterator(m_begin));
+	};
+
 	
 private:
 	static T *RawAlloc(size_t n)
@@ -256,7 +241,7 @@ private:
 		return p;
 	}
 
-	static void RawDealloc(T *p)
+	static void RawDealloc(T *p) noexcept
 	{
 		free(p);
 	}
@@ -269,7 +254,7 @@ private:
 		}
 	}
 
-	static void DeleteItems(T *begin, T *end)
+	static void DeleteItems(T *begin, T *end) noexcept
 	{
 		DestroyItems(begin, end);
 		RawDealloc(begin);
@@ -288,3 +273,4 @@ private:
 	T *m_end = nullptr;
 	T *m_endOfCapacity = nullptr;
 };
+
